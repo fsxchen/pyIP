@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*- 
-'''
+"""
+
 File Name: pyIP/pyIP.py
 Description: 
 Created_Time: 2017-03-02 14:49:28
 Last modified: 2017-03-02 17时13分00秒
-'''
+"""
 
 _author = 'arron'
 _email = 'fsxchen@gmail.com'
@@ -13,9 +14,10 @@ import sys
 import os, re
 import socket, struct
 
-#ip address Reg
+
 ip_reg = "^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[0-9]{1,2})(\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[0-9]{1,2})){3}$"
 ip_pattern = re.compile(ip_reg)
+
 
 def is_ipaddr(addrstr):
     """
@@ -24,6 +26,7 @@ def is_ipaddr(addrstr):
     :return: bool
     """
     return True if re.match(ip_pattern, addrstr) else False
+
 
 def is_net_mask(netmaskstr):
     """
@@ -43,19 +46,20 @@ def is_net_mask(netmaskstr):
     else:
         return False
 
+
 def is_ip_range_s(iprangestr):
     """
     判断一个ip地址是否为一个比较短ip范围， 192.168.0.1-254
     :param iprangestr:
     :return: bool
     """
-    if "-" in ipRange:
+    if "-" in iprangestr:
         try:
-            ipStart, end = ipRange.split("-")
+            ipStart, end = iprangestr.split("-")
         except Exception as e:
             print(e)
 
-        if re.match(pattern, ipStart) is not None:
+        if re.match(ip_pattern, ipStart) is not None:
             try:
                 return True if 0 < int(end) and int(end) <= 255 else False       #like 192.168.1-255
             except Exception as e:
