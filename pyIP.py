@@ -65,6 +65,7 @@ def is_ip_range_s(iprangestr):
     else:
         return False
 
+
 def is_ip_range_l(iprangestr):
     """
     判断一个ip地址是否为一个比较长ip范围， 192.168.0.1-192.168.1.254
@@ -132,6 +133,7 @@ def ip_create(line):
             ip = socket.inet_ntoa(struct.pack('I',socket.ntohl(ipArry[0])))
             yield ip
 
+
 def ip2cidrip(ip):
     """
     将一个ip地址，找出其对应的cidr网络
@@ -175,8 +177,8 @@ def ip_handle(astr):
         if os.path.isfile(astr):
             for ip in get_ip_from_file(astr):
                 yield ip
-        # else:
-        #     yield ip_create(astr)
+        else:
+            yield ip_create(astr)
 
     elif type(astr) is list:
         for ip in astr:
